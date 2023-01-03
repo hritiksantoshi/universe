@@ -1,0 +1,16 @@
+image: node:16
+
+options:
+ max-time: 10
+pipelines:
+  branches:
+    master:
+     - step:
+         name: Deploy to server
+         script:
+           - echo "Deploying to Server"
+           - pipe: atlassian/ssh-run:0.4.0
+             variables:
+               SSH_USER: 'ubuntu'
+               SERVER: '147.182.160.178'
+               COMMAND: '/home/cbdev/universe_eye_apis.sh'
